@@ -5,7 +5,7 @@ import SearchBarImg from '../assets/icons/search_bar_img.png';
 function Searchbar() {
     return (
         <div className={clsx('h-full', 'bg-white/85', 'w-85', 'flex', 'flex-row', 'items-center', 'justify-between')}>
-            <div className="p-4">
+            <div draggable="false" className="p-4">
                 <VscSearch className="text-xl" />
             </div>
             <input
@@ -13,7 +13,7 @@ function Searchbar() {
                 type="text"
                 placeholder="Type here to search"
             />
-            <img className={clsx('h-full')} src={SearchBarImg} />
+            <img className={clsx('h-full w-full object-top object-cover')} draggable="false" src={SearchBarImg} />
         </div>
     );
 }

@@ -4,9 +4,10 @@ import TaskbarIcon from './TaskbarIcon';
 import EdgeIcon from '../assets/w11Icons/applications/edge.ico';
 import StoreIcon from '../assets/w11Icons/applications/store3.ico';
 import TaskView from '../assets/icons/task-view.svg';
-import FileExplorerIcon from '../assets/icons/imageres_1023.ico';
+import FileExplorerIcon from '../assets/icons/imageres_5325.ico';
 import WifiIcon from '../assets/icons/imageres_6024.ico';
 import { PiChatCenteredLight } from 'react-icons/pi';
+import { SlArrowDown } from 'react-icons/sl';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
@@ -47,16 +48,22 @@ function Taskbar() {
                         </TaskbarIcon>
                     </div>
                     <div className={clsx('flex', 'flex-row', 'justify-center')}>
-                        <div>
-                            <TaskbarIcon customClasses={clsx("w-max", "px-2")}>
-                                <img className="h-6" src={WifiIcon} />
+                        <div className="flex flex-row items-center">
+                            <TaskbarIcon customClasses={clsx('w-max', 'px-2')}>
+                                <SlArrowDown className="text-md" />
+                            </TaskbarIcon>
+                            <TaskbarIcon customClasses={clsx('w-max', 'px-2')}>
+                                <button className="text-black text-sm">ENG</button>
+                            </TaskbarIcon>
+                            <TaskbarIcon customClasses={clsx('w-max', 'px-2')}>
+                                <img className="h-5" src={WifiIcon} />
                             </TaskbarIcon>
                         </div>
                         <TaskbarIcon customClasses={clsx('flex', 'flex-col', 'items-center', 'px-2')}>
-                            <div>{dayjs(time).format('HH:mm A')}</div>
-                            <div>{dayjs(time).format('DD/MM/YYYY')}</div>
+                            <div className="text-sm">{dayjs(time).format('HH:mm A')}</div>
+                            <div className="text-sm">{dayjs(time).format('DD-MM-YYYY')}</div>
                         </TaskbarIcon>
-                        <TaskbarIcon customClasses={clsx("w-max", "px-3")}>
+                        <TaskbarIcon customClasses={clsx('w-max', 'px-3')}>
                             <PiChatCenteredLight className="text-2xl" />
                         </TaskbarIcon>
                     </div>
