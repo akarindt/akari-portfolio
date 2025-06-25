@@ -4,6 +4,7 @@ import RecycleBinIcon from '../assets/icons/imageres_54.ico';
 import YTMusicIcon from '../assets/icons/yt_music.svg';
 import GithubIcon from '../assets/icons/github_icon.png';
 import WinverIcon from '../assets/icons/imageres_15.ico';
+import Winver from '../components/elements/Winver';
 import type { ReactNode } from 'react';
 
 export type AppIconSettings = {
@@ -53,6 +54,7 @@ const appIconSettings: AppIconSettings[] = [
         iconName: 'winver.exe',
         icon: WinverIcon,
         shortcut: true,
+        element: <Winver />,
     },
 ];
 

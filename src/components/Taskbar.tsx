@@ -24,7 +24,7 @@ function Taskbar() {
     }, [time]);
 
     return (
-        <div className="absolute bottom-0 left-0 z-[10] w-full select-none">
+        <div className="absolute bottom-0 left-0 z-[20] w-full select-none">
             <div className="w-full h-13 bg-white/85">
                 <div className="h-full flex flex-row">
                     <div className="h-full w-full items-center flex flex-row">

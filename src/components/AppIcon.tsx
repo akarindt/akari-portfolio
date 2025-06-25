@@ -1,10 +1,14 @@
 import ShortcutIcon from '../assets/icons/imageres_163.ico';
 import appStore from '../stores/app';
+import contextMenuStore from '../stores/context-menu';
+import elementStore from '../stores/element';
 import type { AppIconSettings } from '../utils/app-icons';
 import type { MouseEvent } from 'react';
 
-function AppIcon({ appId, icon, iconName, shortcut, link }: AppIconSettings) {
-    const state = appStore();
+function AppIcon({ appId, icon, iconName, shortcut, link, element }: AppIconSettings) {
+    const aStore = appStore();
+    const cmStore = contextMenuStore();
+    const eStore = elementStore();
 
     function handleContextMenu(event: MouseEvent) {
         event.preventDefault();
@@ -14,11 +18,19 @@ function AppIcon({ appId, icon, iconName, shortcut, link }: AppIconSettings) {
         if (link) {
             window.open(link, '_blank');
         }
-        state.setSelectedApp('');
+
+        if (element) {
+            eStore.setElement(element);
+        }
+
+        aStore.setSelectedApp('');
     }
 
     function handleClick() {
-        state.setSelectedApp(appId);
+        if (cmStore.isOpen) {
+            cmStore.setOpen(false);
+        }
+        aStore.setSelectedApp(appId);
     }
 
     return (
@@ -28,8 +40,8 @@ function AppIcon({ appId, icon, iconName, shortcut, link }: AppIconSettings) {
             onDoubleClick={handleDoubleClick}
             onClick={handleClick}
             draggable="false"
-            className={`hover:cursor-pointer ${
-                state.selectedApp === appId && 'bg-white/30'
+            className={`${
+                aStore.selectedApp === appId && 'bg-white/30'
             } hover:bg-white/30 flex flex-col items-center justify-center p-1`}
         >
             <div draggable="false" className="h-[50px] w-[50px] relative">
@@ -50,7 +62,7 @@ function AppIcon({ appId, icon, iconName, shortcut, link }: AppIconSettings) {
             <div
                 draggable="false"
                 className={`w-[80px] ${
-                    state.selectedApp !== appId && 'truncate'
+                    aStore.selectedApp !== appId && 'truncate'
                 } drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-sm text-white text-center mt-1`}
             >
                 {iconName}

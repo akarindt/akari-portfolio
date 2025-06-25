@@ -2,16 +2,44 @@ import InfoIcon from '../assets/icons/imageres_81.ico';
 import { SlArrowRight } from 'react-icons/sl';
 import contextMenuStore from '../stores/context-menu';
 import clsx from 'clsx';
+import type React from 'react';
 
-function ContextMenu() {
+function ContextMenu({ ref }: { ref?: React.Ref<HTMLDivElement> }) {
     const state = contextMenuStore();
+    let positionStyle: React.CSSProperties = {};
+
+    positionStyle = {
+        left: '0%',
+        top: '0%',
+        right: '0%',
+        bottom: '0%',
+    };
+
+    if (state.position.x >= 70) {
+        delete positionStyle.left;
+        positionStyle.right = `${100 - state.position.x}%`;
+    } else {
+        delete positionStyle.right;
+        positionStyle.left = `${state.position.x}%`;
+    }
+
+    if (state.position.y >= 70) {
+        delete positionStyle.top;
+        positionStyle.bottom = `${100 - state.position.y}%`;
+    } else {
+        delete positionStyle.bottom;
+        positionStyle.top = `${state.position.y}%`;
+    }
 
     return (
         <div
+            onContextMenu={(event) => {
+                event.preventDefault();
+            }}
+            ref={ref}
+            style={positionStyle}
             className={clsx(
                 `${state.isOpen ? 'absolute' : 'hidden'}`,
-                `top-[${state.position.y}%]`,
-                `left-[${state.position.x}%]`,
                 'z-[9]',
                 'w-[320px]',
                 'h-max',
