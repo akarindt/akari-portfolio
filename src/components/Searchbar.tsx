@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { VscSearch } from 'react-icons/vsc';
-import SearchBarImg from '../assets/icons/search_bar_img.png';
+import SearchBarImg from '@assets/icons/search_bar_img.png';
 
 function Searchbar() {
     return (

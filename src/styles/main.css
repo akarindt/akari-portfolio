@@ -37,3 +37,37 @@
 .context-menu {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
+
+/* Windows 10 opening animation styles */
+@keyframes win10-open {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.windows-animation-open {
+    animation: win10-open 0.2s ease-out forwards;
+    transform-origin: center;
+}
+
+/* Windows 10 closing animation styles */
+@keyframes win10-close {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.windows-animation-close {
+    animation: win10-close 0.15s ease-in forwards;
+    transform-origin: center;
+}

@@ -1,8 +1,8 @@
-import ShortcutIcon from '../assets/icons/imageres_163.ico';
-import appStore from '../stores/app';
-import contextMenuStore from '../stores/context-menu';
-import elementStore from '../stores/element';
-import type { AppIconSettings } from '../utils/app-icons';
+import ShortcutIcon from '@assets/icons/imageres_163.ico';
+import appStore from '@stores/app';
+import contextMenuStore from '@stores/context-menu';
+import elementStore from '@stores/element';
+import type { AppIconSettings } from '@utils/app-icons';
 import type { MouseEvent } from 'react';
 
 function AppIcon({ appId, icon, iconName, shortcut, link, element }: AppIconSettings) {

@@ -1,11 +1,11 @@
 import { FaWindows } from 'react-icons/fa';
-import Searchbar from './Searchbar';
-import TaskbarIcon from './TaskbarIcon';
-import EdgeIcon from '../assets/w11Icons/applications/edge.ico';
-import StoreIcon from '../assets/w11Icons/applications/store3.ico';
-import TaskView from '../assets/icons/task-view.svg';
-import FileExplorerIcon from '../assets/icons/imageres_5325.ico';
-import WifiIcon from '../assets/icons/imageres_6024.ico';
+import Searchbar from '@components/Searchbar';
+import TaskbarIcon from '@components/TaskbarIcon';
+import EdgeIcon from '@assets/w11Icons/applications/edge.ico';
+import StoreIcon from '@assets/w11Icons/applications/store3.ico';
+import TaskView from '@assets/icons/task-view.svg';
+import FileExplorerIcon from '@assets/icons/imageres_5325.ico';
+import WifiIcon from '@assets/icons/imageres_6024.ico';
 import { PiChatCenteredLight } from 'react-icons/pi';
 import { SlArrowDown } from 'react-icons/sl';
 import { useEffect, useState } from 'react';

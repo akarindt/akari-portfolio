@@ -1,6 +1,6 @@
-import InfoIcon from '../assets/icons/imageres_81.ico';
+import InfoIcon from '@assets/icons/imageres_81.ico';
 import { SlArrowRight } from 'react-icons/sl';
-import contextMenuStore from '../stores/context-menu';
+import contextMenuStore from '@stores/context-menu';
 import clsx from 'clsx';
 import type React from 'react';
 
@@ -99,6 +99,10 @@ function ContextMenu({ ref }: { ref?: React.Ref<HTMLDivElement> }) {
             </div>
             <div>
                 <div>
+                    <div className="flex flex-row items-center gap-2 hover:bg-neutral-200 px-3 py-[2px]">
+                        <div className="w-4 h-4"></div>
+                        <div className="text-sm">Learn more about this picture</div>
+                    </div>
                     <div className="flex flex-row items-center gap-2 hover:bg-neutral-200 px-3 py-[2px]">
                         <div className="w-4 h-4">
                             <img className="w-full h-full" src={InfoIcon} />

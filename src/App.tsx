@@ -1,5 +1,5 @@
-import Background from './components/Background';
-import Taskbar from './components/Taskbar';
+import Background from '@components/Background';
+import Taskbar from '@components/Taskbar';
 
 function App() {
     return (

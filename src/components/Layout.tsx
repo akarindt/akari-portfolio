@@ -1,7 +1,7 @@
-import AppIcon from './AppIcon';
-import appIconSettings from '../utils/app-icons';
+import AppIcon from '@components/AppIcon';
+import appIconSettings from '@utils/app-icons';
 import { v4 as uuidv4 } from 'uuid';
-import ElementContainer from './ElementContainer';
+import ElementContainer from '@components/ElementContainer';
 
 function Layout() {
     return (

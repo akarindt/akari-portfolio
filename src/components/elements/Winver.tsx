@@ -1,8 +1,29 @@
 import { Rnd } from 'react-rnd';
 import { TfiClose } from 'react-icons/tfi';
-import Windows10Icon from '../../assets/icons/Windows_10_Logo.png';
+import Windows10Icon from '@assets/icons/Windows_10_Logo.png';
+import elementStore from '@stores/element';
+import { useEffect, useState } from 'react';
 
 function Winver() {
+    const eStore = elementStore();
+    const [isAnimating, setIsAnimating] = useState(true);
+    const [isClosing, setIsClosing] = useState(false);
+
+    useEffect(() => {
+        setIsAnimating(true);
+        const timer = setTimeout(() => {
+            setIsAnimating(false);
+        }, 200);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    function handleClose(): void {
+        setIsClosing(true);
+        setTimeout(() => {
+            eStore.setElement(null);
+        }, 150);
+    }
     return (
         <Rnd
             style={{
@@ -17,16 +38,24 @@ function Winver() {
             cancel="#winver-content"
             enableResizing={false}
         >
-            <div className="w-full h-full bg-neutral-100 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+            {' '}
+            <div
+                className={`w-full h-full bg-neutral-100 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] ${
+                    isAnimating ? 'windows-animation-open' : ''
+                } ${isClosing ? 'windows-animation-close' : ''}`}
+            >
                 <div className="flex flex-row w-full justify-between">
                     <div className="text-sm h-full p-2 text-center">About Windows</div>
-                    <div className="hover:bg-red-500 hover:text-white p-2 flex items-center justify-center">
+                    <button
+                        onClick={handleClose}
+                        className="hover:bg-red-500 hover:text-white p-2 flex items-center justify-center"
+                    >
                         <TfiClose />
-                    </div>
+                    </button>
                 </div>
                 <div id="winver-content" className="relative bg-[#f7ebeb] h-full w-full py-3 flex flex-col gap-4">
                     <div className="px-24">
-                        <img className="w-full h-full" src={Windows10Icon} />
+                        <img draggable="false" className="w-full h-full" src={Windows10Icon} />
                     </div>
                     <div className="px-3">
                         <hr className="border-neutral-400" />
@@ -50,9 +79,12 @@ function Winver() {
                             Microsoft, Windows and Other demonstrated Products in this project are trademarks of the
                             Microsoft group of companies
                         </p>
-                    </div>
+                    </div>{' '}
                     <div className="absolute bottom-0 right-0 p-3">
-                        <button className="text-sm w-[100px] bg-[#d7d5d5] border border-blue-500 p-1 cursor-pointer">
+                        <button
+                            onClick={handleClose}
+                            className="text-sm w-[100px] bg-[#d7d5d5] border border-blue-500 p-1 cursor-pointer"
+                        >
                             OK
                         </button>
                     </div>

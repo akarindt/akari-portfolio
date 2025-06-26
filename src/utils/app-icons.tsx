@@ -1,11 +1,14 @@
-import ThisPCIcon from '../assets/icons/imageres_109.ico';
-import FolderIcon from '../assets/icons/shell32_264.ico';
-import RecycleBinIcon from '../assets/icons/imageres_54.ico';
-import YTMusicIcon from '../assets/icons/yt_music.svg';
-import GithubIcon from '../assets/icons/github_icon.png';
-import WinverIcon from '../assets/icons/imageres_15.ico';
-import Winver from '../components/elements/Winver';
+import ThisPCIcon from '@assets/icons/imageres_109.ico';
+import FolderIcon from '@assets/icons/shell32_264.ico';
+import RecycleBinIcon from '@assets/icons/imageres_54.ico';
+import YTMusicIcon from '@assets/icons/yt_music.svg';
+import GithubIcon from '@assets/icons/github_icon.png';
+import WinverIcon from '@assets/icons/imageres_15.ico';
+import Winver from '@components/elements/Winver';
 import type { ReactNode } from 'react';
+import FileExplorer from '@components/elements/FileExplorer';
+import Projects from '@components/elements/Projects';
+import QuickAccess from '@components/elements/QuickAccess';
 
 export type AppIconSettings = {
     appId: string;
@@ -22,12 +25,32 @@ const appIconSettings: AppIconSettings[] = [
         iconName: 'This PC',
         icon: ThisPCIcon,
         shortcut: false,
+        element: (
+            <FileExplorer
+                folderName="This PC"
+                path={['This PC']}
+                pathDisplay="C:/"
+                startIcon={<img className="p-1" src={ThisPCIcon} />}
+            >
+                <QuickAccess />
+            </FileExplorer>
+        ),
     },
     {
         appId: 'user-folder',
-        iconName: 'AKARI',
+        iconName: 'Projects',
         icon: FolderIcon,
         shortcut: false,
+        element: (
+            <FileExplorer
+                folderName="Projects"
+                path={['Projects']}
+                pathDisplay="C:/Users/AKARI/Desktop/Projects"
+                startIcon={<img className="p-1" src={FolderIcon} />}
+            >
+                <Projects />
+            </FileExplorer>
+        ),
     },
     {
         appId: 'recycler-bin',

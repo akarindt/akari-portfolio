@@ -1,8 +1,8 @@
 import React from 'react';
-import Bg from '../assets/bg/bg_img.jpg';
-import contextMenuStore from '../stores/context-menu';
-import ContextMenu from './ContextMenu';
-import Layout from './Layout';
+import Bg from '@assets/bg/bg_img.jpg';
+import contextMenuStore from '@stores/context-menu';
+import ContextMenu from '@components/ContextMenu';
+import Layout from '@components/Layout';
 
 function Background() {
     const cmStore = contextMenuStore();
