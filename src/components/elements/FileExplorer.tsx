@@ -13,7 +13,7 @@ import PictureIcon from '@assets/icons/shell32_63008.ico';
 import ThisPCIcon from '@assets/icons/imageres_109.ico';
 import NetworkIcon from '@assets/icons/shell32_16782.ico';
 import PinIcon from '@assets/icons/imageres_5100.ico';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import elementStore from '@stores/element';
 import SidebarItem from '@components/SidebarItem';
 import SearchInput from '@components/SearchInput';
@@ -21,22 +21,28 @@ import NavButton from '@components/NavButton';
 import MenuTab from '@components/MenuTab';
 import WindowControls from '@components/WindowControls';
 
-function FileExplorer({
-    children,
-    folderName,
-    startIcon,
-    pathDisplay,
-    path,
-}: {
+type FileExplorerProps = {
     children: React.ReactNode;
     folderName: string;
     startIcon: React.ReactNode;
     pathDisplay: string;
     path: string[];
-}) {
+    id?: string;
+    instanceId: string;
+};
+
+const FileExplorer: React.FC<FileExplorerProps> = ({
+    children,
+    folderName,
+    startIcon,
+    pathDisplay,
+    path,
+    instanceId,
+}) => {
     const eStore = elementStore();
     const [isAnimating, setIsAnimating] = useState(true);
     const [isClosing, setIsClosing] = useState(false);
+    const ref = useRef<Rnd>(null);
 
     useEffect(() => {
         setIsAnimating(true);
@@ -47,15 +53,16 @@ function FileExplorer({
         return () => clearTimeout(timer);
     }, []);
 
-    function handleClose(): void {
+    const handleClose = () => {
         setIsClosing(true);
         setTimeout(() => {
-            eStore.setElement(null);
+            eStore.removeElement(instanceId);
         }, 150);
-    }
+    };
 
     return (
         <Rnd
+            ref={ref}
             style={{
                 cursor: 'context-menu',
             }}
@@ -70,6 +77,7 @@ function FileExplorer({
             cancel=".cancel"
         >
             <div
+                id={instanceId}
                 className={`w-full h-full bg-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] ${
                     isAnimating ? 'windows-animation-open' : ''
                 } ${isClosing ? 'windows-animation-close' : ''}`}
@@ -87,11 +95,10 @@ function FileExplorer({
                             </div>
                             <RxDividerVertical className="text-neutral-500" />
                             <div className="text-sm text-black">{folderName}</div>
-                        </div>{' '}
+                        </div>
                         <WindowControls onClose={handleClose} />
                     </div>
                     <div className="flex flex-row justify-between items-center border-b border-neutral-300 cancel">
-                        {' '}
                         <div className="flex flex-row items-center">
                             <MenuTab label="File" active={true} />
                             <MenuTab label="Home" />
@@ -150,6 +157,6 @@ function FileExplorer({
             </div>
         </Rnd>
     );
-}
+};
 
 export default FileExplorer;

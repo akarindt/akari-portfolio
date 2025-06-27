@@ -1,11 +1,10 @@
-import React from 'react';
 import clsx from 'clsx';
 
-interface NavButtonProps {
+type NavButtonProps = {
     icon: React.ReactNode;
     onClick?: () => void;
     disabled?: boolean;
-}
+};
 
 const NavButton: React.FC<NavButtonProps> = ({ icon, onClick, disabled = false }) => {
     return (

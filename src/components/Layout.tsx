@@ -3,7 +3,7 @@ import appIconSettings from '@utils/app-icons';
 import { v4 as uuidv4 } from 'uuid';
 import ElementContainer from '@components/ElementContainer';
 
-function Layout() {
+const Layout: React.FC = () => {
     return (
         <div className="absolute top-0 left-0 z-[5] p-1">
             <ElementContainer />
@@ -14,6 +14,6 @@ function Layout() {
             </div>
         </div>
     );
-}
+};
 
 export default Layout;

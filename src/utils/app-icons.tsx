@@ -15,7 +15,7 @@ export type AppIconSettings = {
     iconName: string;
     icon: string;
     shortcut: boolean;
-    element?: ReactNode;
+    createElement?: (instanceId: string) => ReactNode;
     link?: string;
 };
 
@@ -25,8 +25,9 @@ const appIconSettings: AppIconSettings[] = [
         iconName: 'This PC',
         icon: ThisPCIcon,
         shortcut: false,
-        element: (
+        createElement: (instanceId) => (
             <FileExplorer
+                instanceId={instanceId}
                 folderName="This PC"
                 path={['This PC']}
                 pathDisplay="C:/"
@@ -41,8 +42,9 @@ const appIconSettings: AppIconSettings[] = [
         iconName: 'Projects',
         icon: FolderIcon,
         shortcut: false,
-        element: (
+        createElement: (instanceId) => (
             <FileExplorer
+                instanceId={instanceId}
                 folderName="Projects"
                 path={['Projects']}
                 pathDisplay="C:/Users/AKARI/Desktop/Projects"
@@ -77,7 +79,7 @@ const appIconSettings: AppIconSettings[] = [
         iconName: 'winver.exe',
         icon: WinverIcon,
         shortcut: true,
-        element: <Winver />,
+        createElement: (instanceId) => <Winver instanceId={instanceId} />,
     },
 ];
 

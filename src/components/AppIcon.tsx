@@ -5,33 +5,35 @@ import elementStore from '@stores/element';
 import type { AppIconSettings } from '@utils/app-icons';
 import type { MouseEvent } from 'react';
 
-function AppIcon({ appId, icon, iconName, shortcut, link, element }: AppIconSettings) {
+const AppIcon: React.FC<AppIconSettings> = ({ appId, icon, iconName, shortcut, link, createElement }) => {
     const aStore = appStore();
     const cmStore = contextMenuStore();
     const eStore = elementStore();
 
-    function handleContextMenu(event: MouseEvent) {
+    const handleContextMenu = (event: MouseEvent) => {
         event.preventDefault();
-    }
+    };
 
-    function handleDoubleClick() {
+    const handleDoubleClick = () => {
         if (link) {
             window.open(link, '_blank');
         }
 
-        if (element) {
-            eStore.setElement(element);
+        if (createElement) {
+            const instanceId = eStore.setElement(appId, null);
+            eStore.removeElement(instanceId);
+            eStore.setElement(appId, createElement(instanceId));
         }
 
         aStore.setSelectedApp('');
-    }
+    };
 
-    function handleClick() {
+    const handleClick = () => {
         if (cmStore.isOpen) {
             cmStore.setOpen(false);
         }
         aStore.setSelectedApp(appId);
-    }
+    };
 
     return (
         <div
@@ -69,6 +71,6 @@ function AppIcon({ appId, icon, iconName, shortcut, link, element }: AppIconSett
             </div>
         </div>
     );
-}
+};
 
 export default AppIcon;

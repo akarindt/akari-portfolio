@@ -1,11 +1,10 @@
-import React from 'react';
 import type { InputHTMLAttributes } from 'react';
 import clsx from 'clsx';
 
-interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {
+type SearchInputProps = {
     icon?: React.ReactNode;
     iconPosition?: 'left' | 'right';
-}
+} & InputHTMLAttributes<HTMLInputElement>;
 
 const SearchInput: React.FC<SearchInputProps> = ({ icon, iconPosition = 'right', className, ...inputProps }) => {
     return (

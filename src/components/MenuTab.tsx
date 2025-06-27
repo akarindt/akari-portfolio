@@ -1,11 +1,10 @@
-import React from 'react';
 import clsx from 'clsx';
 
-interface MenuTabProps {
+type MenuTabProps = {
     label: string;
     active?: boolean;
     onClick?: () => void;
-}
+};
 
 const MenuTab: React.FC<MenuTabProps> = ({ label, active = false, onClick }) => {
     return (

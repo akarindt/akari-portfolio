@@ -1,12 +1,10 @@
-import React from 'react';
-
-interface SidebarItemProps {
+type SidebarItemProps = {
     icon: string;
     label: string;
     isPinned?: boolean;
     pinIcon?: string;
     onClick?: () => void;
-}
+};
 
 const SidebarItem: React.FC<SidebarItemProps> = ({ icon, label, isPinned, pinIcon, onClick }) => {
     return (

@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
 
-function Taskbar() {
+const Taskbar: React.FC = () => {
     const [time, setTime] = useState<Date>(new Date());
 
     useEffect(() => {
@@ -71,6 +71,6 @@ function Taskbar() {
             </div>
         </div>
     );
-}
+};
 
 export default Taskbar;

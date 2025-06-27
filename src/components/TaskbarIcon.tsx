@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 
-function TaskbarIcon({ children, customClasses }: { children: React.ReactNode; customClasses?: string }) {
+type TaskbarIconProps = { children: React.ReactNode; customClasses?: string };
+
+const TaskbarIcon: React.FC<TaskbarIconProps> = ({ children, customClasses }) => {
     return (
         <div
             draggable="false"
@@ -20,6 +22,6 @@ function TaskbarIcon({ children, customClasses }: { children: React.ReactNode; c
             {children}
         </div>
     );
-}
+};
 
 export default TaskbarIcon;

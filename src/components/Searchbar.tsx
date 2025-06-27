@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { VscSearch } from 'react-icons/vsc';
 import SearchBarImg from '@assets/icons/search_bar_img.png';
 
-function Searchbar() {
+const Searchbar: React.FC = () => {
     return (
         <div className={clsx('h-full', 'bg-white/85', 'w-85', 'flex', 'flex-row', 'items-center', 'justify-between')}>
             <div draggable="false" className="p-4">
@@ -16,6 +16,6 @@ function Searchbar() {
             <img className={clsx('h-full w-full object-top object-cover')} draggable="false" src={SearchBarImg} />
         </div>
     );
-}
+};
 
 export default Searchbar;

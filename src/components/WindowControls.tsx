@@ -1,15 +1,14 @@
-import React from 'react';
 import { TfiClose, TfiLayoutLineSolid, TfiLayoutWidthFull } from 'react-icons/tfi';
 
-interface WindowControlsProps {
+type WindowControlsProps = {
     onClose?: () => void;
     onMinimize?: () => void;
     onMaximize?: () => void;
-}
+};
 
 const WindowControls: React.FC<WindowControlsProps> = ({ onClose, onMinimize, onMaximize }) => {
     return (
-        <div className="flex flex-row">
+        <div className="flex flex-row cancel">
             <button onClick={onMinimize} className="hover:bg-neutral-200 py-2 px-4 flex items-center justify-center">
                 <TfiLayoutLineSolid className="text-xs" />
             </button>

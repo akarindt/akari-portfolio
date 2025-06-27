@@ -4,7 +4,7 @@ import Windows10Icon from '@assets/icons/Windows_10_Logo.png';
 import elementStore from '@stores/element';
 import { useEffect, useState } from 'react';
 
-function Winver() {
+const Winver: React.FC<{ id?: string; instanceId: string }> = ({ instanceId }) => {
     const eStore = elementStore();
     const [isAnimating, setIsAnimating] = useState(true);
     const [isClosing, setIsClosing] = useState(false);
@@ -18,12 +18,13 @@ function Winver() {
         return () => clearTimeout(timer);
     }, []);
 
-    function handleClose(): void {
+    const handleClose = () => {
         setIsClosing(true);
         setTimeout(() => {
-            eStore.setElement(null);
+            eStore.removeElement(instanceId);
         }, 150);
-    }
+    };
+
     return (
         <Rnd
             style={{
@@ -38,7 +39,6 @@ function Winver() {
             cancel="#winver-content"
             enableResizing={false}
         >
-            {' '}
             <div
                 className={`w-full h-full bg-neutral-100 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] ${
                     isAnimating ? 'windows-animation-open' : ''
@@ -92,6 +92,6 @@ function Winver() {
             </div>
         </Rnd>
     );
-}
+};
 
 export default Winver;

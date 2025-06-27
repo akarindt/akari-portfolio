@@ -4,7 +4,11 @@ import contextMenuStore from '@stores/context-menu';
 import clsx from 'clsx';
 import type React from 'react';
 
-function ContextMenu({ ref }: { ref?: React.Ref<HTMLDivElement> }) {
+type ContextMenuProps = {
+    ref?: React.Ref<HTMLDivElement>;
+};
+
+const ContextMenu: React.FC<ContextMenuProps> = ({ ref }) => {
     const state = contextMenuStore();
     let positionStyle: React.CSSProperties = {};
 
@@ -113,6 +117,6 @@ function ContextMenu({ ref }: { ref?: React.Ref<HTMLDivElement> }) {
             </div>
         </div>
     );
-}
+};
 
 export default ContextMenu;

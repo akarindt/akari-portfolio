@@ -1,14 +1,14 @@
-import React from 'react';
 import Bg from '@assets/bg/bg_img.jpg';
 import contextMenuStore from '@stores/context-menu';
 import ContextMenu from '@components/ContextMenu';
 import Layout from '@components/Layout';
+import React from 'react';
 
-function Background() {
+const Background: React.FC = () => {
     const cmStore = contextMenuStore();
     const contextRef = React.useRef<HTMLDivElement>(null);
 
-    function handleContextMenu(event: React.MouseEvent) {
+    const handleContextMenu = (event: React.MouseEvent) => {
         event.preventDefault();
         cmStore.setOpen(false);
         const currentTarget = event.currentTarget as HTMLDivElement;
@@ -22,13 +22,13 @@ function Background() {
             cmStore.setOpen(true);
             clearTimeout(timeout);
         }, 100);
-    }
+    };
 
-    function handleOnClick(event: React.MouseEvent<HTMLDivElement | MouseEvent>) {
+    const handleOnClick = (event: React.MouseEvent<HTMLDivElement | MouseEvent>) => {
         if (contextRef.current && !contextRef.current?.contains(event.target as Node)) {
             cmStore.setOpen(false);
         }
-    }
+    };
 
     return (
         <div className="w-screen h-screen relative select-none">
@@ -43,6 +43,6 @@ function Background() {
             <ContextMenu ref={contextRef} />
         </div>
     );
-}
+};
 
 export default Background;
