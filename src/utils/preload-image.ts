@@ -25,6 +25,7 @@ import StoreIcon from '@assets/icons/store3.ico';
 import TaskViewIcon from '@assets/icons/task-view.svg';
 import Windows10Logo from '@assets/icons/Windows_10_Logo.png';
 import YtMusicIcon from '@assets/icons/yt_music.svg';
+import QRImg from '@assets/icons/frame.png';
 
 const ICONS = {
     BgImg,
@@ -54,6 +55,7 @@ const ICONS = {
     TaskViewIcon,
     Windows10Logo,
     YtMusicIcon,
+    QRImg,
 };
 
 export const preloadImages = (): Promise<void[]> => {

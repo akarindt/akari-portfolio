@@ -1,6 +1,6 @@
 import { Rnd } from 'react-rnd';
 import { TfiClose } from 'react-icons/tfi';
-import Windows10Icon from '@assets/icons/Windows_10_Logo.png';
+import icons from '@utils/preload-image';
 import elementStore from '@stores/element';
 import { useEffect, useState } from 'react';
 
@@ -64,7 +64,7 @@ const Winver: React.FC<{ id?: string; instanceId: string }> = ({ instanceId }) =
                 </div>
                 <div id="winver-content" className="relative bg-[#f7ebeb] h-full w-full py-3 flex flex-col gap-4">
                     <div className="px-24">
-                        <img draggable="false" className="w-full h-full" src={Windows10Icon} />
+                        <img draggable="false" className="w-full h-full" src={icons.Windows10Logo} />
                     </div>
                     <div className="px-3">
                         <hr className="border-neutral-400" />

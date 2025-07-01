@@ -1,11 +1,7 @@
 import { FaWindows } from 'react-icons/fa';
 import Searchbar from '@components/Searchbar';
 import TaskbarIcon from '@components/TaskbarIcon';
-import EdgeIcon from '@assets/icons/edge.ico';
-import StoreIcon from '@assets/icons/store3.ico';
-import TaskView from '@assets/icons/task-view.svg';
-import FileExplorerIcon from '@assets/icons/imageres_5325.ico';
-import WifiIcon from '@assets/icons/imageres_6024.ico';
+import icons from '@utils/preload-image';
 import { PiChatCenteredLight } from 'react-icons/pi';
 import { SlArrowDown } from 'react-icons/sl';
 import { useEffect, useState } from 'react';
@@ -35,16 +31,16 @@ const Taskbar: React.FC = () => {
                             <Searchbar />
                         </div>
                         <TaskbarIcon>
-                            <img className="h-5" src={TaskView} />
+                            <img className="h-5" src={icons.TaskViewIcon} />
                         </TaskbarIcon>
                         <TaskbarIcon>
-                            <img className="h-8" src={StoreIcon} />
+                            <img className="h-8" src={icons.StoreIcon} />
                         </TaskbarIcon>
                         <TaskbarIcon>
-                            <img className="h-8" src={FileExplorerIcon} />
+                            <img className="h-8" src={icons.FileExplorerIcon} />
                         </TaskbarIcon>
                         <TaskbarIcon>
-                            <img className="h-8" src={EdgeIcon} />
+                            <img className="h-8" src={icons.EdgeIcon} />
                         </TaskbarIcon>
                     </div>
                     <div className={clsx('flex', 'flex-row', 'justify-center')}>
@@ -56,7 +52,7 @@ const Taskbar: React.FC = () => {
                                 <button className="text-black text-sm">ENG</button>
                             </TaskbarIcon>
                             <TaskbarIcon customClasses={clsx('w-max', 'px-2')}>
-                                <img className="h-5" src={WifiIcon} />
+                                <img className="h-5" src={icons.WifiIcon} />
                             </TaskbarIcon>
                         </div>
                         <TaskbarIcon customClasses={clsx('flex', 'flex-col', 'items-center', 'px-2', 'w-max')}>

@@ -1,4 +1,4 @@
-import InfoIcon from '@assets/icons/imageres_81.ico';
+import icons from '@utils/preload-image';
 import { SlArrowRight } from 'react-icons/sl';
 import contextMenuStore from '@stores/context-menu';
 import clsx from 'clsx';
@@ -109,7 +109,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ ref }) => {
                     </div>
                     <div className="flex flex-row items-center gap-2 hover:bg-neutral-200 px-3 py-[2px]">
                         <div className="w-4 h-4">
-                            <img className="w-full h-full" src={InfoIcon} />
+                            <img className="w-full h-full" src={icons.InfoIcon} />
                         </div>
                         <div className="text-sm">About Windows</div>
                     </div>

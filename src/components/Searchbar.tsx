@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { VscSearch } from 'react-icons/vsc';
-import SearchBarImg from '@assets/icons/search_bar_img.png';
+import icons from '@utils/preload-image';
 
 const Searchbar: React.FC = () => {
     return (
@@ -13,7 +13,7 @@ const Searchbar: React.FC = () => {
                 type="text"
                 placeholder="Type here to search"
             />
-            <img className={clsx('h-full w-full object-top object-cover')} draggable="false" src={SearchBarImg} />
+            <img className={clsx('h-full w-full object-top object-cover')} draggable="false" src={icons.SearchBarImg} />
         </div>
     );
 };

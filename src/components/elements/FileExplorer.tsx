@@ -1,18 +1,9 @@
 import { Rnd } from 'react-rnd';
 import { RxDividerVertical } from 'react-icons/rx';
-import FileIcon1 from '@assets/icons/imageres_5367.ico';
-import FolderIcon1 from '@assets/icons/imageres_5.ico';
 import { TfiAngleDown } from 'react-icons/tfi';
 import { FaArrowLeft, FaArrowRight, FaArrowUp, FaAngleDown } from 'react-icons/fa';
-import QuestionIcon from '@assets/icons/imageres_99.ico';
 import { VscSearch } from 'react-icons/vsc';
-import DesktopIcon from '@assets/icons/shell32_35.ico';
-import DownloadIcon from '@assets/icons/imageres_5303.ico';
-import DocumentIcon from '@assets/icons/shell32_2.ico';
-import PictureIcon from '@assets/icons/shell32_63008.ico';
-import ThisPCIcon from '@assets/icons/imageres_109.ico';
-import NetworkIcon from '@assets/icons/shell32_16782.ico';
-import PinIcon from '@assets/icons/imageres_5100.ico';
+import icons from '@utils/preload-image';
 import { useState, useEffect, useRef } from 'react';
 import elementStore from '@stores/element';
 import SidebarItem from '@components/SidebarItem';
@@ -42,6 +33,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
     const eStore = elementStore();
     const [isAnimating, setIsAnimating] = useState(true);
     const [isClosing, setIsClosing] = useState(false);
+    const [show, setShow] = useState(true);
     const ref = useRef<Rnd>(null);
 
     useEffect(() => {
@@ -74,7 +66,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                 height: 600,
             }}
             minHeight={200}
-            minWidth={400}
+            minWidth={300}
             cancel=".cancel"
             onDragStart={() => eStore.focusElement(instanceId)}
         >
@@ -91,10 +83,10 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                             <div className="h-6 w-6">{startIcon}</div>
                             <RxDividerVertical className="text-neutral-500" />
                             <div className="h-6 w-6">
-                                <img className="p-1" src={FileIcon1} />
+                                <img className="p-1" src={icons.FileCheckIcon} />
                             </div>
                             <div className="h-6 w-6">
-                                <img className="p-1" src={FolderIcon1} />
+                                <img className="p-1" src={icons.FolderIcon} />
                             </div>
                             <RxDividerVertical className="text-neutral-500" />
                             <div
@@ -119,7 +111,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                                 <TfiAngleDown />
                             </div>
                             <div className="w-4 h-4">
-                                <img src={QuestionIcon} />
+                                <img src={icons.QuestionIcon} />
                             </div>
                         </div>
                     </div>
@@ -130,14 +122,19 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                             <NavButton icon={<FaAngleDown />} />
                             <NavButton icon={<FaArrowUp />} />
                         </div>
-                        <div className="grow">
+                        <div className="grow relative">
+                            {show && <div className="w-6 h-6 absolute top-0 left-0">{startIcon}</div>}
                             <SearchInput
-                                placeholder={`${path.join(' > ')}`}
+                                placeholder={`   > ${path.join(' > ')}`}
                                 onFocus={(e) => {
+                                    setShow(false);
                                     e.target.value = pathDisplay;
                                     e.target.select();
                                 }}
-                                onBlur={(e) => (e.target.value = '')}
+                                onBlur={(e) => {
+                                    e.target.value = '';
+                                    setShow(true);
+                                }}
                             />
                         </div>{' '}
                         <div className="w-[250px]">
@@ -151,18 +148,38 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                 </div>
                 <div className="cancel h-[calc(100%-107px)]">
                     <div className="w-full flex flex-row h-full">
-                        <div className="w-[200px] pt-4 pb-2 border-r border-neutral-50 flex flex-col gap-1">
-                            <SidebarItem icon={DesktopIcon} label="Desktop" isPinned={true} pinIcon={PinIcon} />
-                            <SidebarItem icon={DownloadIcon} label="Downloads" isPinned={true} pinIcon={PinIcon} />
-                            <SidebarItem icon={DocumentIcon} label="Documents" isPinned={true} pinIcon={PinIcon} />
-                            <SidebarItem icon={PictureIcon} label="Pictures" isPinned={true} pinIcon={PinIcon} />
-                            <SidebarItem icon={FolderIcon1} label="Projects" />
-                            <SidebarItem icon={ThisPCIcon} label="This PC" />
-                            <SidebarItem icon={NetworkIcon} label="Network" />
+                        <div className="w-[200px] h-[100%-87px] overflow-x-scroll pt-4 pb-2 border-r border-neutral-50 flex flex-col gap-1">
+                            <SidebarItem
+                                icon={icons.Desktop2Icon}
+                                label="Desktop"
+                                isPinned={true}
+                                pinIcon={icons.PinIcon}
+                            />
+                            <SidebarItem
+                                icon={icons.DownloadFolderIcon}
+                                label="Downloads"
+                                isPinned={true}
+                                pinIcon={icons.PinIcon}
+                            />
+                            <SidebarItem
+                                icon={icons.DocumentIcon}
+                                label="Documents"
+                                isPinned={true}
+                                pinIcon={icons.PinIcon}
+                            />
+                            <SidebarItem
+                                icon={icons.PictureFullIcon}
+                                label="Pictures"
+                                isPinned={true}
+                                pinIcon={icons.PinIcon}
+                            />
+                            <SidebarItem icon={icons.FolderIcon} label="Projects" />
+                            <SidebarItem icon={icons.ThisPCIcon} label="This PC" />
+                            <SidebarItem icon={icons.NetworkIcon} label="Network" />
                         </div>
-                        <div className="grow pt-4 px-5">{children}</div>
+                        <div className="grow pl-2">{children}</div>
                     </div>
-                    <div className="h-5 w-full bg-neutral-50 text-xs flex items-center px-2">30 items</div>
+                    <div className=" h-5 w-full bg-neutral-50 text-xs flex items-center px-2">30 items</div>
                 </div>
             </div>
         </Rnd>
