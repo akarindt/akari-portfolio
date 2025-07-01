@@ -8,7 +8,7 @@ type SidebarItemProps = {
 
 const SidebarItem: React.FC<SidebarItemProps> = ({ icon, label, isPinned, pinIcon, onClick }) => {
     return (
-        <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center justify-between hover w-full pl-5 pr-2 py-[1px] hover:bg-neutral-100">
             <div className="flex flex-row items-center gap-1 grow" onClick={onClick}>
                 <div className="w-4 h-4">
                     <img className="w-full h-full" src={icon} />

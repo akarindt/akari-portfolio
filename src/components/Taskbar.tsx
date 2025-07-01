@@ -1,8 +1,8 @@
 import { FaWindows } from 'react-icons/fa';
 import Searchbar from '@components/Searchbar';
 import TaskbarIcon from '@components/TaskbarIcon';
-import EdgeIcon from '@assets/w11Icons/applications/edge.ico';
-import StoreIcon from '@assets/w11Icons/applications/store3.ico';
+import EdgeIcon from '@assets/icons/edge.ico';
+import StoreIcon from '@assets/icons/store3.ico';
 import TaskView from '@assets/icons/task-view.svg';
 import FileExplorerIcon from '@assets/icons/imageres_5325.ico';
 import WifiIcon from '@assets/icons/imageres_6024.ico';
@@ -59,7 +59,7 @@ const Taskbar: React.FC = () => {
                                 <img className="h-5" src={WifiIcon} />
                             </TaskbarIcon>
                         </div>
-                        <TaskbarIcon customClasses={clsx('flex', 'flex-col', 'items-center', 'px-2')}>
+                        <TaskbarIcon customClasses={clsx('flex', 'flex-col', 'items-center', 'px-2', 'w-max')}>
                             <div className="text-sm">{dayjs(time).format('HH:mm A')}</div>
                             <div className="text-sm">{dayjs(time).format('DD-MM-YYYY')}</div>
                         </TaskbarIcon>

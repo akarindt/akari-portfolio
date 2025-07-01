@@ -1,4 +1,4 @@
-import Bg from '@assets/bg/bg_img.jpg';
+import icons from '@utils/preload-image';
 import contextMenuStore from '@stores/context-menu';
 import ContextMenu from '@components/ContextMenu';
 import Layout from '@components/Layout';
@@ -36,7 +36,7 @@ const Background: React.FC = () => {
                 onClick={handleOnClick}
                 onContextMenu={handleContextMenu}
                 draggable="false"
-                src={Bg}
+                src={icons.BgImg}
                 className="select-none w-full h-full object-cover absolute top-0 left-0 z-[0]"
             />
             <Layout />

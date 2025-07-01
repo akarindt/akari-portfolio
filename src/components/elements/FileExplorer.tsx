@@ -62,6 +62,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
 
     return (
         <Rnd
+            className={`${eStore.getCurrentFocusedElement(instanceId) ? 'z-[100]' : ''}`}
             ref={ref}
             style={{
                 cursor: 'context-menu',
@@ -75,12 +76,14 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
             minHeight={200}
             minWidth={400}
             cancel=".cancel"
+            onDragStart={() => eStore.focusElement(instanceId)}
         >
             <div
+                onClick={() => eStore.focusElement(instanceId)}
                 id={instanceId}
-                className={`w-full h-full bg-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] ${
-                    isAnimating ? 'windows-animation-open' : ''
-                } ${isClosing ? 'windows-animation-close' : ''}`}
+                className={`w-full h-full bg-white windows-10-shadow ${isAnimating ? 'windows-animation-open' : ''} ${
+                    isClosing ? 'windows-animation-close' : ''
+                }`}
             >
                 <div>
                     <div className="flex flex-row justify-between">
@@ -94,7 +97,13 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                                 <img className="p-1" src={FolderIcon1} />
                             </div>
                             <RxDividerVertical className="text-neutral-500" />
-                            <div className="text-sm text-black">{folderName}</div>
+                            <div
+                                className={`text-sm text-black ${
+                                    eStore.getCurrentFocusedElement(instanceId) ? 'text-black' : 'text-neutral-400'
+                                }`}
+                            >
+                                {folderName}
+                            </div>
                         </div>
                         <WindowControls onClose={handleClose} />
                     </div>
@@ -115,7 +124,6 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                         </div>
                     </div>
                     <div className="flex flex-row items-center justify-between gap-2 my-1 px-1 cancel">
-                        {' '}
                         <div className="flex py-1.5 gap-3">
                             <NavButton icon={<FaArrowLeft />} />
                             <NavButton icon={<FaArrowRight />} disabled={true} />
@@ -141,19 +149,21 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                         </div>
                     </div>
                 </div>
-                <div className="cancel h-[calc(100%-87px)] w-full flex flex-row">
-                    <div className="w-[200px] pl-5 pt-4 pb-2 pr-2 border-r border-neutral-50 flex flex-col gap-1">
-                        <SidebarItem icon={DesktopIcon} label="Desktop" isPinned={true} pinIcon={PinIcon} />
-                        <SidebarItem icon={DownloadIcon} label="Downloads" isPinned={true} pinIcon={PinIcon} />
-                        <SidebarItem icon={DocumentIcon} label="Documents" isPinned={true} pinIcon={PinIcon} />
-                        <SidebarItem icon={PictureIcon} label="Pictures" isPinned={true} pinIcon={PinIcon} />
-                        <SidebarItem icon={FolderIcon1} label="Projects" />
-                        <SidebarItem icon={ThisPCIcon} label="This PC" />
-                        <SidebarItem icon={NetworkIcon} label="Network" />
+                <div className="cancel h-[calc(100%-107px)]">
+                    <div className="w-full flex flex-row h-full">
+                        <div className="w-[200px] pt-4 pb-2 border-r border-neutral-50 flex flex-col gap-1">
+                            <SidebarItem icon={DesktopIcon} label="Desktop" isPinned={true} pinIcon={PinIcon} />
+                            <SidebarItem icon={DownloadIcon} label="Downloads" isPinned={true} pinIcon={PinIcon} />
+                            <SidebarItem icon={DocumentIcon} label="Documents" isPinned={true} pinIcon={PinIcon} />
+                            <SidebarItem icon={PictureIcon} label="Pictures" isPinned={true} pinIcon={PinIcon} />
+                            <SidebarItem icon={FolderIcon1} label="Projects" />
+                            <SidebarItem icon={ThisPCIcon} label="This PC" />
+                            <SidebarItem icon={NetworkIcon} label="Network" />
+                        </div>
+                        <div className="grow pt-4 px-5">{children}</div>
                     </div>
-                    <div className="grow pt-4 px-5">{children}</div>
+                    <div className="h-5 w-full bg-neutral-50 text-xs flex items-center px-2">30 items</div>
                 </div>
-                <div className="h-5 w-full bg-neutral-50 text-xs flex items-center px-2">30 items</div>
             </div>
         </Rnd>
     );

@@ -1,9 +1,10 @@
-import ShortcutIcon from '@assets/icons/imageres_163.ico';
+import icons from '@utils/preload-image';
 import appStore from '@stores/app';
 import contextMenuStore from '@stores/context-menu';
 import elementStore from '@stores/element';
 import type { AppIconSettings } from '@utils/app-icons';
 import type { MouseEvent } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const AppIcon: React.FC<AppIconSettings> = ({ appId, icon, iconName, shortcut, link, createElement }) => {
     const aStore = appStore();
@@ -20,9 +21,8 @@ const AppIcon: React.FC<AppIconSettings> = ({ appId, icon, iconName, shortcut, l
         }
 
         if (createElement) {
-            const instanceId = eStore.setElement(appId, null);
-            eStore.removeElement(instanceId);
-            eStore.setElement(appId, createElement(instanceId));
+            const instanceId = uuidv4();
+            eStore.setElement(appId, createElement(instanceId), instanceId);
         }
 
         aStore.setSelectedApp('');
@@ -57,7 +57,7 @@ const AppIcon: React.FC<AppIconSettings> = ({ appId, icon, iconName, shortcut, l
                     <img
                         draggable="false"
                         className="w-[40px] h-[40px] absolute bottom-0 left-0 z-[2]"
-                        src={ShortcutIcon}
+                        src={icons.ShortcutIcon}
                     />
                 )}
             </div>

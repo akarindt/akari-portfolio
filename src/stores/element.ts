@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import type React from 'react';
 import { create } from 'zustand';
-import { v4 as uuidv4 } from 'uuid';
 
 export type ElementStore = {
     elements: {
@@ -9,29 +8,39 @@ export type ElementStore = {
         type: string;
         instanceId: string;
         content: ReactNode;
+        isFocused: boolean;
     }[];
-    setElement: (type: string, element: React.ReactNode) => string;
+    setElement: (type: string, element: React.ReactNode, id: string) => void;
     removeElement: (instanceId: string) => void;
-    getElementsByType: (type: string) => { id: string; type: string; instanceId: string; content: ReactNode }[];
+    focusElement: (instanceId: string) => void;
+    getCurrentFocusedElement: (instanceId: string) => boolean;
 };
 
 const elementStore = create<ElementStore>((set, get) => ({
     elements: [],
-    setElement: (type, element) => {
-        const instanceId = uuidv4();
+    setElement: (type, element, id) => {
         set((state) => {
             return {
-                elements: [...state.elements, { id: type, type, instanceId, content: element }],
+                elements: [
+                    ...state.elements.map((el) => ({ ...el, isFocused: false })),
+                    { id: type, type, instanceId: id, content: element, isFocused: true },
+                ],
             };
         });
-        return instanceId;
     },
     removeElement: (instanceId) =>
         set((state) => ({
             elements: state.elements.filter((el) => el.instanceId !== instanceId),
         })),
-    getElementsByType: (type) => {
-        return get().elements.filter((el) => el.type === type);
+    focusElement: (instanceId) =>
+        set((state) => ({
+            elements: state.elements.map((el) =>
+                el.instanceId === instanceId ? { ...el, isFocused: true } : { ...el, isFocused: false }
+            ),
+        })),
+    getCurrentFocusedElement: (instanceId) => {
+        const element = get().elements.find((el) => el.instanceId === instanceId);
+        return element ? element.isFocused : false;
     },
 }));
 

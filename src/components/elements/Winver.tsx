@@ -27,6 +27,7 @@ const Winver: React.FC<{ id?: string; instanceId: string }> = ({ instanceId }) =
 
     return (
         <Rnd
+            className={`${eStore.getCurrentFocusedElement(instanceId) ? 'z-[100]' : ''}`}
             style={{
                 cursor: 'context-menu',
             }}
@@ -38,14 +39,22 @@ const Winver: React.FC<{ id?: string; instanceId: string }> = ({ instanceId }) =
             }}
             cancel="#winver-content"
             enableResizing={false}
+            onDragStart={() => eStore.focusElement(instanceId)}
         >
             <div
-                className={`w-full h-full bg-neutral-100 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] ${
+                onClick={() => eStore.focusElement(instanceId)}
+                className={`w-full h-full bg-neutral-100 windows-10-shadow ${
                     isAnimating ? 'windows-animation-open' : ''
                 } ${isClosing ? 'windows-animation-close' : ''}`}
             >
                 <div className="flex flex-row w-full justify-between">
-                    <div className="text-sm h-full p-2 text-center">About Windows</div>
+                    <div
+                        className={`text-sm h-full p-2 text-center ${
+                            eStore.getCurrentFocusedElement(instanceId) ? 'text-black' : 'text-neutral-400'
+                        }`}
+                    >
+                        About Windows
+                    </div>
                     <button
                         onClick={handleClose}
                         className="hover:bg-red-500 hover:text-white p-2 flex items-center justify-center"

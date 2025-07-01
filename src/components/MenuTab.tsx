@@ -15,7 +15,6 @@ const MenuTab: React.FC<MenuTabProps> = ({ label, active = false, onClick }) => 
                 'p-0.5',
                 'w-18',
                 'text-center',
-                'cursor-pointer',
                 active && 'bg-blue-500 text-white',
                 !active && 'hover:bg-neutral-100'
             )}

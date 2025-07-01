@@ -71,3 +71,7 @@
     animation: win10-close 0.15s ease-in forwards;
     transform-origin: center;
 }
+
+.windows-10-shadow {
+    box-shadow: 0 0 6px #00000040;
+}
