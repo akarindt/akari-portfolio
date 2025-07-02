@@ -13,7 +13,13 @@ const Searchbar: React.FC = () => {
                 type="text"
                 placeholder="Type here to search"
             />
-            <img className={clsx('h-full w-full object-top object-cover')} draggable="false" src={icons.SearchBarImg} />
+            <img
+                className={clsx('h-full w-full object-top object-cover')}
+                loading="eager"
+                draggable="false"
+                alt="Search bar background"
+                src={icons.SearchBarImg}
+            />
         </div>
     );
 };

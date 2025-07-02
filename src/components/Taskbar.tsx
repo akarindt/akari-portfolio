@@ -31,16 +31,21 @@ const Taskbar: React.FC = () => {
                             <Searchbar />
                         </div>
                         <TaskbarIcon>
-                            <img className="h-5" src={icons.TaskViewIcon} />
+                            <img loading="eager" className="h-5" alt="Task View Icon" src={icons.TaskViewIcon} />
                         </TaskbarIcon>
                         <TaskbarIcon>
-                            <img className="h-8" src={icons.StoreIcon} />
+                            <img loading="eager" className="h-8" alt="Store Icon" src={icons.StoreIcon} />
                         </TaskbarIcon>
                         <TaskbarIcon>
-                            <img className="h-8" src={icons.FileExplorerIcon} />
+                            <img
+                                loading="eager"
+                                className="h-8"
+                                alt="File Explorer Icon"
+                                src={icons.FileExplorerIcon}
+                            />
                         </TaskbarIcon>
                         <TaskbarIcon>
-                            <img className="h-8" src={icons.EdgeIcon} />
+                            <img loading="eager" className="h-8" alt="Edge Icon" src={icons.EdgeIcon} />
                         </TaskbarIcon>
                     </div>
                     <div className={clsx('flex', 'flex-row', 'justify-center')}>
@@ -52,7 +57,7 @@ const Taskbar: React.FC = () => {
                                 <button className="text-black text-sm">ENG</button>
                             </TaskbarIcon>
                             <TaskbarIcon customClasses={clsx('w-max', 'px-2')}>
-                                <img className="h-5" src={icons.WifiIcon} />
+                                <img loading="eager" className="h-5" alt="Wifi Icon" src={icons.WifiIcon} />
                             </TaskbarIcon>
                         </div>
                         <TaskbarIcon customClasses={clsx('flex', 'flex-col', 'items-center', 'px-2', 'w-max')}>

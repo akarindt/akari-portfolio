@@ -11,14 +11,14 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ icon, label, isPinned, pinIco
         <div className="flex flex-row items-center justify-between hover w-full pl-5 pr-2 py-[1px] hover:bg-neutral-100">
             <div className="flex flex-row items-center gap-1 grow" onClick={onClick}>
                 <div className="w-4 h-4">
-                    <img className="w-full h-full" src={icon} />
+                    <img loading="eager" className="w-full h-full" alt={`${label} icon`} src={icon} />
                 </div>
                 <div className="text-sm">{label}</div>
             </div>
             <div>
                 {isPinned && pinIcon && (
                     <div className="w-4 h-4">
-                        <img className="w-full h-full" src={pinIcon} />
+                        <img loading="eager" className="w-full h-full" alt="Pin icon" src={pinIcon} />
                     </div>
                 )}
             </div>

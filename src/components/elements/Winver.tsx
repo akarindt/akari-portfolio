@@ -63,8 +63,14 @@ const Winver: React.FC<{ id?: string; instanceId: string }> = ({ instanceId }) =
                     </button>
                 </div>
                 <div id="winver-content" className="relative bg-[#f7ebeb] h-full w-full py-3 flex flex-col gap-4">
-                    <div className="px-24">
-                        <img draggable="false" className="w-full h-full" src={icons.Windows10Logo} />
+                    <div className="w-96 h-auto mx-auto">
+                        <img
+                            draggable="false"
+                            loading="eager"
+                            className="w-full h-full"
+                            alt="Windows 10 Logo"
+                            src={icons.Windows10Logo}
+                        />
                     </div>
                     <div className="px-3">
                         <hr className="border-neutral-400" />

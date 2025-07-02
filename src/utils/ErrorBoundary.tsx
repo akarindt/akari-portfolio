@@ -61,7 +61,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                         </span>
                         <div className="flex sm:flex-row flex-col gap-2">
                             <div className="w-[100px] h-[100px]">
-                                <img className="w-full h-full" src={icons.QRImg} />
+                                <img loading="eager" className="w-full h-full" alt="QR Code" src={icons.QRImg} />
                             </div>
                             <div className="flex flex-col justify-between items-start gap-5 grow">
                                 <span>

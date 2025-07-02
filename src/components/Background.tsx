@@ -36,6 +36,8 @@ const Background: React.FC = () => {
                 onClick={handleOnClick}
                 onContextMenu={handleContextMenu}
                 draggable="false"
+                loading="eager"
+                alt="Desktop Background"
                 src={icons.BgImg}
                 className="select-none w-full h-full object-cover absolute top-0 left-0 z-[0]"
             />

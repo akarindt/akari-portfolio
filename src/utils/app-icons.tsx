@@ -26,7 +26,7 @@ const appIconSettings: AppIconSettings[] = [
                 folderName="This PC"
                 path={['This PC']}
                 pathDisplay="C:/"
-                startIcon={<img className="p-1" src={icons.ThisPCIcon} />}
+                startIcon={<img loading="eager" className="p-1" alt="This PC Icon" src={icons.ThisPCIcon} />}
             >
                 <QuickAccess />
             </FileExplorer>
@@ -43,7 +43,7 @@ const appIconSettings: AppIconSettings[] = [
                 folderName="Projects"
                 path={['Projects']}
                 pathDisplay="C:/Users/AKARI/Desktop/Projects"
-                startIcon={<img className="p-1" src={icons.FolderOpenIcon} />}
+                startIcon={<img loading="eager" className="p-1" alt="Folder Open Icon" src={icons.FolderOpenIcon} />}
             >
                 <Projects />
             </FileExplorer>

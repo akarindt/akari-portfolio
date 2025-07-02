@@ -66,7 +66,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                 height: 600,
             }}
             minHeight={200}
-            minWidth={300}
+            minWidth={400}
             cancel=".cancel"
             onDragStart={() => eStore.focusElement(instanceId)}
         >
@@ -75,7 +75,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                 id={instanceId}
                 className={`w-full h-full bg-white windows-10-shadow ${isAnimating ? 'windows-animation-open' : ''} ${
                     isClosing ? 'windows-animation-close' : ''
-                }`}
+                } ${eStore.getCurrentFocusedElement(instanceId) ? 'border border-blue-300' : ''}`}
             >
                 <div>
                     <div className="flex flex-row justify-between">
@@ -83,10 +83,10 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                             <div className="h-6 w-6">{startIcon}</div>
                             <RxDividerVertical className="text-neutral-500" />
                             <div className="h-6 w-6">
-                                <img className="p-1" src={icons.FileCheckIcon} />
+                                <img loading="eager" className="p-1" alt="File Check Icon" src={icons.FileCheckIcon} />
                             </div>
                             <div className="h-6 w-6">
-                                <img className="p-1" src={icons.FolderIcon} />
+                                <img loading="eager" className="p-1" alt="Folder Icon" src={icons.FolderIcon} />
                             </div>
                             <RxDividerVertical className="text-neutral-500" />
                             <div
@@ -111,7 +111,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                                 <TfiAngleDown />
                             </div>
                             <div className="w-4 h-4">
-                                <img src={icons.QuestionIcon} />
+                                <img loading="eager" alt="Question Icon" src={icons.QuestionIcon} />
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                         <div className="grow relative">
                             {show && <div className="w-6 h-6 absolute top-0 left-0">{startIcon}</div>}
                             <SearchInput
-                                placeholder={`   > ${path.join(' > ')}`}
+                                placeholder={`    > ${path.join(' > ')}`}
                                 onFocus={(e) => {
                                     setShow(false);
                                     e.target.value = pathDisplay;

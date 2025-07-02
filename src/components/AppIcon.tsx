@@ -50,12 +50,15 @@ const AppIcon: React.FC<AppIconSettings> = ({ appId, icon, iconName, shortcut, l
                 <img
                     src={icon}
                     draggable="false"
+                    loading="eager"
                     alt={iconName}
                     className="h-full w-full absolute top-0 left-0 z-[1]"
                 />
                 {shortcut && (
                     <img
                         draggable="false"
+                        loading="eager"
+                        alt="Shortcut indicator"
                         className="w-[40px] h-[40px] absolute bottom-0 left-0 z-[2]"
                         src={icons.ShortcutIcon}
                     />

@@ -109,7 +109,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ ref }) => {
                     </div>
                     <div className="flex flex-row items-center gap-2 hover:bg-neutral-200 px-3 py-[2px]">
                         <div className="w-4 h-4">
-                            <img className="w-full h-full" src={icons.InfoIcon} />
+                            <img loading="eager" className="w-full h-full" alt="Info Icon" src={icons.InfoIcon} />
                         </div>
                         <div className="text-sm">About Windows</div>
                     </div>
