@@ -5,11 +5,13 @@ import icons from '@utils/preload-image';
 import { PiChatCenteredLight } from 'react-icons/pi';
 import { SlArrowDown } from 'react-icons/sl';
 import { useEffect, useState } from 'react';
+import { explorerStore } from '@stores/explorer';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
 
 const Taskbar: React.FC = () => {
     const [time, setTime] = useState<Date>(new Date());
+    const exStore = explorerStore();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -36,7 +38,11 @@ const Taskbar: React.FC = () => {
                         <TaskbarIcon>
                             <img loading="eager" className="h-8" alt="Store Icon" src={icons.StoreIcon} />
                         </TaskbarIcon>
-                        <TaskbarIcon>
+                        <TaskbarIcon
+                            customClasses={clsx(
+                                exStore.explorers.includes('folder') && 'bg-white border-b-[3px] border-blue-500'
+                            )}
+                        >
                             <img
                                 loading="eager"
                                 className="h-8"

@@ -5,11 +5,13 @@ import elementStore from '@stores/element';
 import type { AppIconSettings } from '@utils/app-icons';
 import type { MouseEvent } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { explorerStore } from '@stores/explorer';
 
-const AppIcon: React.FC<AppIconSettings> = ({ appId, icon, iconName, shortcut, link, createElement }) => {
+const AppIcon: React.FC<AppIconSettings> = ({ appId, icon, iconName, shortcut, link, createElement, explorer }) => {
     const aStore = appStore();
     const cmStore = contextMenuStore();
     const eStore = elementStore();
+    const exStore = explorerStore();
 
     const handleContextMenu = (event: MouseEvent) => {
         event.preventDefault();
@@ -26,6 +28,7 @@ const AppIcon: React.FC<AppIconSettings> = ({ appId, icon, iconName, shortcut, l
         }
 
         aStore.setSelectedApp('');
+        exStore.addExplorer(explorer);
     };
 
     const handleClick = () => {

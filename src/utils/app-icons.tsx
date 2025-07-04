@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import FileExplorer from '@components/elements/FileExplorer';
 import Projects from '@components/elements/Projects';
 import QuickAccess from '@components/elements/QuickAccess';
+import projects from './projects';
 
 export type AppIconSettings = {
     appId: string;
@@ -12,6 +13,7 @@ export type AppIconSettings = {
     shortcut: boolean;
     createElement?: (instanceId: string) => ReactNode;
     link?: string;
+    explorer: string;
 };
 
 const appIconSettings: AppIconSettings[] = [
@@ -22,6 +24,7 @@ const appIconSettings: AppIconSettings[] = [
         shortcut: false,
         createElement: (instanceId) => (
             <FileExplorer
+                totalItems={0}
                 instanceId={instanceId}
                 folderName="This PC"
                 path={['This PC']}
@@ -31,6 +34,7 @@ const appIconSettings: AppIconSettings[] = [
                 <QuickAccess />
             </FileExplorer>
         ),
+        explorer: 'folder',
     },
     {
         appId: 'user-folder',
@@ -39,6 +43,7 @@ const appIconSettings: AppIconSettings[] = [
         shortcut: false,
         createElement: (instanceId) => (
             <FileExplorer
+                totalItems={projects.length}
                 instanceId={instanceId}
                 folderName="Projects"
                 path={['Projects']}
@@ -48,12 +53,14 @@ const appIconSettings: AppIconSettings[] = [
                 <Projects />
             </FileExplorer>
         ),
+        explorer: 'folder',
     },
     {
         appId: 'recycler-bin',
         iconName: 'Recycler Bin',
         icon: icons.RecyclerBinFullIcon,
         shortcut: false,
+        explorer: '',
     },
     {
         appId: 'yt-music',
@@ -61,6 +68,7 @@ const appIconSettings: AppIconSettings[] = [
         icon: icons.YtMusicIcon,
         shortcut: true,
         link: 'https://music.youtube.com/playlist?list=PL0D_ztGqMoBgO9_8vvvYg-LbnMXuA-TAp&feature=shared',
+        explorer: '',
     },
     {
         appId: 'github-desktop',
@@ -68,6 +76,7 @@ const appIconSettings: AppIconSettings[] = [
         icon: icons.GithubIcon,
         shortcut: true,
         link: 'https://github.com/akarindt/akari-portfolio',
+        explorer: '',
     },
     {
         appId: 'winver',
@@ -75,6 +84,7 @@ const appIconSettings: AppIconSettings[] = [
         icon: icons.ExeIcon,
         shortcut: true,
         createElement: (instanceId) => <Winver instanceId={instanceId} />,
+        explorer: '',
     },
 ];
 

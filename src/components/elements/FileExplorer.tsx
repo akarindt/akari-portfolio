@@ -11,6 +11,7 @@ import SearchInput from '@components/SearchInput';
 import NavButton from '@components/NavButton';
 import MenuTab from '@components/MenuTab';
 import WindowControls from '@components/WindowControls';
+import { explorerStore } from '@stores/explorer';
 
 type FileExplorerProps = {
     children: React.ReactNode;
@@ -20,6 +21,7 @@ type FileExplorerProps = {
     path: string[];
     id?: string;
     instanceId: string;
+    totalItems: number;
 };
 
 const FileExplorer: React.FC<FileExplorerProps> = ({
@@ -29,8 +31,10 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
     pathDisplay,
     path,
     instanceId,
+    totalItems,
 }) => {
     const eStore = elementStore();
+    const exStore = explorerStore();
     const [isAnimating, setIsAnimating] = useState(true);
     const [isClosing, setIsClosing] = useState(false);
     const [show, setShow] = useState(true);
@@ -50,6 +54,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
         setTimeout(() => {
             eStore.removeElement(instanceId);
         }, 150);
+        exStore.removeExplorer('folder');
     };
 
     return (
@@ -177,9 +182,9 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
                             <SidebarItem icon={icons.ThisPCIcon} label="This PC" />
                             <SidebarItem icon={icons.NetworkIcon} label="Network" />
                         </div>
-                        <div className="grow pl-2">{children}</div>
+                        <div className="grow pt-5 pl-2 overflow-x-scroll">{children}</div>
                     </div>
-                    <div className=" h-5 w-full bg-neutral-50 text-xs flex items-center px-2">30 items</div>
+                    <div className=" h-5 w-full bg-neutral-50 text-xs flex items-center px-2">{totalItems} items</div>
                 </div>
             </div>
         </Rnd>
